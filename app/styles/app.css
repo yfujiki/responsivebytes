@@ -2,6 +2,7 @@
     /*background-color:#a8e0fe;*/
     background-color:darkslategray;
 }
+
 .cover {
     height: 280px;
     background: transparent; 
@@ -20,4 +21,9 @@
 
 .table {
     background-color:white;
+}
+
+.converter {
+    text-align: center;
+    margin-bottom: 20px;
 }
