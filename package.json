@@ -40,5 +40,8 @@
   "engines": {
     "node": ">= 4"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
 }
