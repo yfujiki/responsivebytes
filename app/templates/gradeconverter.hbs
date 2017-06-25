@@ -1,18 +1,19 @@
+{{log model._result.names}}
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            {{#each model.names as |name|}}
+            {{#each model._result.names as |name|}}
             <th>{{name}}</th>
             {{/each}}
         </tr>
     </thead>
     <tbody>
         <tr>
-            {{#each model.categories as |category|}}
+            {{#each model._result.categories as |category|}}
             <td>{{category}}</td>
             {{/each}}
         </tr>
-        {{#each model.grades as |grade i|}}
+        {{#each model._result.grades as |grade|}}
         <tr>
             {{#each grade as |grade_per_system|}}
             <td>{{grade_per_system}}</td>

@@ -2,53 +2,64 @@ import Ember from 'ember';
 import GradeSystem from '../models/grade-system';
 
 export default Ember.Object.extend({
-    systems: [],
+    systems: {},
+    system_names: [],
     init(data) {
         var lines = data["data"].split('\n');
         for (var i=0; i<lines.length; i++) {
             var line = lines[i];
-            var grades = line.split(',');
-            for (var j=0; j<grades.length; j++) {
-                var grade = grades[j];
+            var items = line.split(',');
+            for (var j=0; j<items.length; j++) {
+                var item = items[j];
                 if (i === 0) {
-                    var system = new GradeSystem({name: grade});
-                    this.systems.push(system);
+                    var system = new GradeSystem({name: item});
+                    this.system_names.push(item);
+                    this.systems[item] = system;
                 } else if (i === 1) {
-                    var system = this.systems[j];
-                    system.category = grade;
+                    var system_name = this.system_names[j];
+                    var system = this.systems[system_name];
+                    system.category = item;
                 } else if (i === 2) {
-                    var system = this.systems[j];
-                    system.language = grade;
+                    var system_name = this.system_names[j];
+                    var system = this.systems[system_name];
+                    system.language = item;
                 } else {
-                    var system = this.systems[j];
-                    system.grades.push(grade);
+                    var system_name = this.system_names[j];
+                    var system = this.systems[system_name];
+                    system.grades.push(item);
                 }
             }
         }
     },
-    system_names() {
-        return this.systems.map(function(system) {
-            return system.name;
-        });
-    },
     system_categories() {
-        return this.systems.map(function(system) {
-            return system.category;
+        var ret = {};
+        var self = this;
+        this.system_names.forEach(function(name) {
+            var system = self.systems[name];
+            ret[name] = system.name
         });
+        return ret;
     },
     system_language() {
-        return this.systems.map(function(system) {
-            return system.language;
+        var ret = {};
+        var self = this;
+        this.system_names.forEach(function(name) {
+            var system = self.systems[name];
+            ret[name] = system.language;
         });
+        return ret;
     },
     grades() {
-        var gradeCount = this.systems[0].grades.length;
-        var ret = []
+        var ret = [];
+        var self = this;
+        var gradeCount = this.systems["Yosemite Decimal System"].grades.length;
         for (var i=0; i<gradeCount; i++) {
-            var grades = this.systems.map(function(system) {
-                    return system.grades[i];
+            var retInt = {};
+            this.system_names.forEach(function(name) {
+                var system = self.systems[name];
+                retInt[name] = system.grades[i];
             });
-            ret.push(grades);               
+            ret.push(retInt);               
         }
         return ret;
     }
