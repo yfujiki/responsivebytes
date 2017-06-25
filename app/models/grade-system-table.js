@@ -36,7 +36,7 @@ export default Ember.Object.extend({
         var self = this;
         this.system_names.forEach(function(name) {
             var system = self.systems[name];
-            ret[name] = system.name
+            ret[name] = system.category
         });
         return ret;
     },

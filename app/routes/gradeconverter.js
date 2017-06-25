@@ -3,6 +3,13 @@ import RSVP from 'rsvp';
 import GradeSystemTable from '../models/grade-system-table';
 
 export default Ember.Route.extend({
+    default_system_names: [
+        "Yosemite Decimal System",
+        "French",
+        "Hueco",
+        "Fontainebleu",
+        "Ogawayama"
+    ],
     model() {
         return new RSVP.Promise(function(resolve) {
             Ember.$.get("https://s3.amazonaws.com/gradeconverter.yfujiki.com/GradeSystemTable.csv", 
@@ -31,9 +38,10 @@ export default Ember.Route.extend({
         let categories = model["categories"];
         let grades = model["grades"];
 
+        let self = this;
         let filteredNames = names.filter(function(name) {
-            return true;
-        });
+            return self.default_system_names.contains(name);
+        })
 
         var filteredCategories = [];
         filteredNames.forEach(function(name) {
@@ -48,6 +56,7 @@ export default Ember.Route.extend({
             })
             filteredGrades.push(gradeArray);
         })
+        filteredGrades.reverse();
 
         let filteredModel = Ember.RSVP.hash({
                 table: model["table"],
@@ -55,8 +64,6 @@ export default Ember.Route.extend({
                 categories: filteredCategories,
                 grades: filteredGrades
         });
-
-console.log(filteredModel);
 
         controller.set('model', filteredModel);
     } 
