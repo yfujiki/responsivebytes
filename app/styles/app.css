@@ -1,0 +1,23 @@
+.ember-view {
+    /*background-color:#a8e0fe;*/
+    background-color:darkslategray;
+}
+.cover {
+    height: 280px;
+    background: transparent; 
+    background-position: center; 
+    background-size: cover; 
+    background-image:url('../assets/images/tenaya.png');
+    opacity: 0.6
+}
+
+.cover-title {
+    margin: 2% 10% 0 10%;
+    color: white;
+    text-align: center;
+    align-content: center;
+}
+
+.table {
+    background-color:white;
+}
