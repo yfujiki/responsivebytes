@@ -1,2 +1,22 @@
-Hello Grade Converter
+<table>
+    <thead>
+        {{#each model.names as |name|}}
+            <td>{{name}}</td>
+        {{/each}}
+    </thead>
+    <tbody>
+        <tr>
+            {{#each model.categories as |category|}}
+            <td>{{category}}</td>
+            {{/each}}
+        </tr>
+        {{#each model.grades as |grade i|}}
+        <tr>
+            {{#each grade as |grade_per_system|}}
+            <td>{{grade_per_system}}</td>
+            {{/each}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
 {{outlet}}
