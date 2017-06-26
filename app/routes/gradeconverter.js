@@ -53,5 +53,9 @@ export default Ember.Route.extend({
                 filteredGrades: filteredGrades
             });
         });
-    }
+    },
+    // setupController(controller, model) {
+    //     this._super(controller, model);
+    //     Ember.$(window).on('load', controller.actions.fromSystemSelected());        
+    // }
 });

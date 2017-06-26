@@ -12,20 +12,20 @@ export default Ember.Object.extend({
             for (var j=0; j<items.length; j++) {
                 var item = items[j];
                 if (i === 0) {
-                    var system = new GradeSystem({name: item});
+                    let system = new GradeSystem({name: item});
                     this.system_names.push(item);
                     this.systems[item] = system;
                 } else if (i === 1) {
-                    var system_name = this.system_names[j];
-                    var system = this.systems[system_name];
+                    let system_name = this.system_names[j];
+                    let system = this.systems[system_name];
                     system.category = item;
                 } else if (i === 2) {
-                    var system_name = this.system_names[j];
-                    var system = this.systems[system_name];
+                    let system_name = this.system_names[j];
+                    let system = this.systems[system_name];
                     system.language = item;
                 } else {
-                    var system_name = this.system_names[j];
-                    var system = this.systems[system_name];
+                    let system_name = this.system_names[j];
+                    let system = this.systems[system_name];
                     system.grades.push(item);
                 }
             }
@@ -61,6 +61,20 @@ export default Ember.Object.extend({
             });
             ret.push(retInt);               
         }
+        return ret;
+    },
+    distinctGradesForSystem(name) {
+        var ret = [];
+        let system = this.systems[name];
+        system.grades.forEach(function(grade) {
+            if (grade.length == 0) {
+                return;
+            }
+            if (ret.contains(grade)) {
+                return;
+            }
+            ret.push(grade);
+        });
         return ret;
     }
 });

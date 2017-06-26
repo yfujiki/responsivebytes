@@ -40,7 +40,7 @@
         <div class="form-group">
           <label for="fromSystem" class='col-sm-3'>From System: </label>
           <div class='col-sm-9'>
-          <select class="form-control" id="fromSystem">
+          <select class="form-control" id="fromSystem" {{action 'fromSystemSelected' on='change'}}>
               {{#each model.table.system_names as |name|}}
                 <option>{{name}}</option>
               {{/each}}
@@ -51,6 +51,9 @@
           <label for="fromGrade" class='col-sm-3'>Grade: </label>
           <div class='col-sm-9'>
             <select class="form-control" id="fromGrade">
+                {{#each selectedFromSystemGrades as |grade|}}
+                    <option>{{grade}}</option>
+                {{/each}}
             </select>
           </div>
         </div>
@@ -59,7 +62,9 @@
           <div class='col-sm-9'>
             <select class="form-control" id="toSystem">
               {{#each model.table.system_names as |name|}}
-                <option>{{name}}</option>
+                {{#if (not-eq name selectedFromSystem)}}
+                    <option>{{name}}</option>
+                {{/if}}
               {{/each}}
             </select>
           </div>
