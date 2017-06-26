@@ -11,6 +11,7 @@ export default Ember.Route.extend({
         "Ogawayama"
     ],
     model() {
+        let self = this;
         return new RSVP.Promise(function(resolve) {
             Ember.$.get("https://s3.amazonaws.com/gradeconverter.yfujiki.com/GradeSystemTable.csv", 
                 function(data) {
@@ -23,48 +24,34 @@ export default Ember.Route.extend({
             var categories = table.system_categories();
             var grades = table.grades();
 
+            let filteredNames = names.filter(function(name) {
+                return self.default_system_names.contains(name);
+            })
+
+            var filteredCategories = [];
+            filteredNames.forEach(function(name) {
+                filteredCategories.push(categories[name]);
+            });
+
+            var filteredGrades = [];
+            grades.forEach(function(grade) {
+                var gradeArray = [];
+                filteredNames.forEach(function(name){
+                    gradeArray.push(grade[name]);
+                })
+                filteredGrades.push(gradeArray);
+            })
+            filteredGrades.reverse();
+
             return Ember.RSVP.hash({
                 table: table,
                 names: names,
                 categories: categories,
-                grades: grades
-            })
+                grades: grades,
+                filteredNames: filteredNames,
+                filteredCategories: filteredCategories,
+                filteredGrades: filteredGrades
+            });
         });
-    },
-    setupController(controller, model) {
-        this._super(controller, model);
-
-        let names = model["names"];
-        let categories = model["categories"];
-        let grades = model["grades"];
-
-        let self = this;
-        let filteredNames = names.filter(function(name) {
-            return self.default_system_names.contains(name);
-        })
-
-        var filteredCategories = [];
-        filteredNames.forEach(function(name) {
-            filteredCategories.push(categories[name]);
-        });
-
-        var filteredGrades = [];
-        grades.forEach(function(grade) {
-            var gradeArray = [];
-            filteredNames.forEach(function(name){
-                gradeArray.push(grade[name]);
-            })
-            filteredGrades.push(gradeArray);
-        })
-        filteredGrades.reverse();
-
-        let filteredModel = Ember.RSVP.hash({
-                table: model["table"],
-                names: filteredNames,
-                categories: filteredCategories,
-                grades: filteredGrades
-        });
-
-        controller.set('model', filteredModel);
-    } 
+    }
 });
