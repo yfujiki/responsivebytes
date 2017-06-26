@@ -53,7 +53,7 @@ export default Ember.Object.extend({
         var ret = [];
         var self = this;
         var gradeCount = this.systems["Yosemite Decimal System"].grades.length;
-        for (var i=0; i<gradeCount; i++) {
+        for (var i=10; i<gradeCount; i++) {
             var retInt = {};
             this.system_names.forEach(function(name) {
                 var system = self.systems[name];
