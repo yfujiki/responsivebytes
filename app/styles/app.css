@@ -1,6 +1,8 @@
 .ember-view {
     /*background-color:#a8e0fe;*/
-    background-color:darkslategray;
+    /*background-color:darkslategray;*/
+    background-color:#002626;
+    /*background-color: #0E4749;*/
 }
 
 .cover {
@@ -85,4 +87,20 @@
     font-weight: bold;
     text-align: center;
     padding-bottom: 24px;
+}
+
+.center {
+    text-align: center;
+}
+
+.footer {
+    background-color: #0E4749;
+    /*background-color: #002626;*/
+    /*background-color: darkslategray;*/
+    color: white;
+    padding: 30px 0 20px 0;  
+}
+
+.footer a {
+    color: white;    
 }
