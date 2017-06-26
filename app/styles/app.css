@@ -10,8 +10,19 @@
     background: transparent; 
     background-position: center; 
     background-size: cover; 
-    background-image:url('../assets/images/tenaya.png');
+    background-image:url('../assets/images/tenaya.jpg');
     opacity: 0.6
+}
+
+@media(max-width: 1500px) {
+    .cover {
+        height: 280px;
+        background: transparent; 
+        background-position: center; 
+        background-size: cover; 
+        background-image:url('../assets/images/tenaya-small.jpg');
+        opacity: 0.6
+    }
 }
 
 .cover-title {
