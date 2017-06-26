@@ -1,7 +1,6 @@
-{{log model._result.names}}
 <div class="converter">
-    <button type="button" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-modal"></span> Converter
+    <button {{action 'openModalConverter'}} type="button" class="btn btn-default btn-lg">
+      <span class="glyphicon glyphicon-modal-window"></span> Converter
     </button>
 </div>
 <table class="table table-striped table-bordered">
@@ -27,4 +26,60 @@
         {{/each}}
     </tbody>
 </table>
+<div id="converter-modal" class={{converterDisplayMode}}>
+{{!--<div id="myModal" class="modal-show">--}}
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" aria-label="Close" {{action 'closeModalConverter'}}>
+        &times;
+    </span>
+    <br/><br/>
+    <div class="modal-title">
+        <span>Let's convert</span>
+    </div>
+    <div>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="fromSystem" class='col-sm-2'>From System: </label>
+          <div class='col-sm-10'>
+          <select class="form-control" id="fromSystem">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fromGrade" class='col-sm-2'>Grade: </label>
+          <div class='col-sm-10'>
+            <select class="form-control" id="fromGrade">
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="toSystem" class='col-sm-2'>To System: </label>
+          <div class='col-sm-10'>
+            <select class="form-control" id="toSystem">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-play"></span> Convert
+                </button>
+            </div>
+        </div>
+      </form>
+    </div>
+    <div id="conversion-result">{{conversionResult}}</div>
+  </div>
+</div>
 {{outlet}}
