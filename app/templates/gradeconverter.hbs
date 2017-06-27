@@ -1,9 +1,9 @@
-<div class="converter">
+<div id="converter-button" class="converter">
     <button {{action 'openModalConverter'}} type="button" class="btn btn-default btn-lg">
       <span class="glyphicon glyphicon-modal-window"></span> Converter
     </button>
 </div>
-<table class="table table-striped table-bordered">
+<table id="conversion-table" class="table table-striped table-bordered">
     <thead>
         <tr>
             {{#each model.filteredNames as |name|}}
