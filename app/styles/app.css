@@ -76,6 +76,10 @@
     padding: 20px 0px 40px 0px;
 }
 
+.conversion-panel {
+    background-color: white;
+}
+
 @media(max-width: 600px) {
     #converter-button {
         display: none;
