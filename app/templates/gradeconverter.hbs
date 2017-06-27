@@ -26,7 +26,7 @@
         {{/each}}
     </tbody>
 </table>
-<div id="converter-modal" class={{converterDisplayMode}}>
+<div class={{converterDisplayMode}}>
   <div class="modal-content">
     <span class="close" aria-label="Close" {{action 'closeModalConverter'}}>
         &times;
@@ -34,5 +34,8 @@
     <br/><br/>
     {{conversion-panel model=model}}
   </div>
+</div>
+<div id="conversion-panel-block">
+    {{conversion-panel model=model}}    
 </div>
 {{outlet}}

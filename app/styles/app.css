@@ -66,18 +66,23 @@
     display: block;
     font-size: 24px;
     font-weight: bold;
-    padding: 20px 0px 40px 0px;
+    padding: 20px 0px 20px 0px;
 }
 
 .convert-result-hide {
     display: none;
     font-size: 24px;
     font-weight: bold;
-    padding: 20px 0px 40px 0px;
+    padding: 20px 0px 20px 0px;
 }
 
 .conversion-panel {
     background-color: white;
+    padding-bottom: 20px;
+}
+
+#conversion-panel-block {
+    display: none;
 }
 
 @media(max-width: 600px) {
@@ -86,6 +91,16 @@
     }
     #conversion-table {
         display: none;
+    }
+    #conversion-panel-block {
+        display: block;
+        margin-top: -30px;
+    }
+}
+
+@media(max-width: 775px) {
+    .converted-result-block {
+        text-align: center;
     }
 }
 
@@ -130,6 +145,7 @@
     font-size: 32px;
     font-weight: bold;
     text-align: center;
+    padding-top: 20px;
     padding-bottom: 24px;
 }
 
