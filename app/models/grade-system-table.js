@@ -81,6 +81,6 @@ export default Ember.Object.extend({
         let fromSystem = this.systems[fromSystemName];
         let gradeIndex = fromSystem.grades.indexOf(fromGrade);
         let toSystem = this.systems[toSystemName];
-        return toSystem.grades[gradeIndex];
+        return toSystem.gradeFor(gradeIndex);
     }
 });
