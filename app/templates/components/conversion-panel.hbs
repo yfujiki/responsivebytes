@@ -2,12 +2,12 @@
     <div class="modal-title">
         <span>Let's convert</span>
     </div>
-    <div>
+    <div class="form-container">
         <form class="form-horizontal">
         <div class="form-group">
-            <label for="fromSystem" class='col-sm-3'>From System: </label>
-            <div class='col-sm-9'>
-            <select class="form-control" id="fromSystem" {{action 'fromSystemSelected' on='change'}}>
+            <label for="fromSystem" class='col-md-3'>From System: </label>
+            <div class='col-md-9'>
+            <select class="form-control" id="fromSystem{{id}}" {{action 'fromSystemSelected' on='change'}}>
                 {{#each model.table.system_names as |name|}}
                 <option>{{name}}</option>
                 {{/each}}
@@ -17,7 +17,7 @@
         <div class="form-group">
             <label for="fromGrade" class='col-sm-3'>Grade: </label>
             <div class='col-sm-9'>
-            <select class="form-control" id="fromGrade" {{action 'fromGradeSelected' on='change'}}>
+            <select class="form-control" id="fromGrade{{id}}" {{action 'fromGradeSelected' on='change'}}>
                 {{#each selectedFromGrades as |grade|}}
                     <option>{{grade}}</option>
                 {{/each}}
@@ -27,7 +27,7 @@
         <div class="form-group">
             <label for="toSystem" class='col-sm-3'>To System: </label>
             <div class='col-sm-9'>
-            <select class="form-control" id="toSystem" {{action 'toSystemSelected' on='change'}}>
+            <select class="form-control" id="toSystem{{id}}" {{action 'toSystemSelected' on='change'}}>
                 {{#each model.table.system_names as |name|}}
                 <option>{{name}}</option>
                 {{/each}}

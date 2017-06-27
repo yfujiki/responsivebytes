@@ -10,7 +10,8 @@ export default Ember.Component.extend({
     convertedResultMode: "convert-result-hide",
     actions: {
         fromSystemSelected() {
-            let selectedElement = Ember.$('#fromSystem')[0];
+            let idString = "#fromSystem" + this.get('id');
+            let selectedElement = Ember.$(idString)[0];
             let selectedIndex = selectedElement.selectedIndex;
             let selectedSystem = selectedElement.options[selectedIndex].value;
             this.set('selectedFromSystem', selectedSystem);
@@ -20,13 +21,15 @@ export default Ember.Component.extend({
             this.set('selectedFromGrades', table.distinctGradesForSystem(selectedSystem));
         },
         toSystemSelected() {
-            let selectedElement = Ember.$('#toSystem')[0];
+            let idString = "#toSystem" + this.get('id');
+            let selectedElement = Ember.$(idString)[0];
             let selectedIndex = selectedElement.selectedIndex;
             let selectedSystem = selectedElement.options[selectedIndex].value;
             this.set('selectedToSystem', selectedSystem);
         },
         fromGradeSelected() {
-            let selectedElement = Ember.$('#fromGrade')[0];
+            let idString = "#fromGrade" + this.get('id');
+            let selectedElement = Ember.$(idString)[0];
             let selectedIndex = selectedElement.selectedIndex;
             let selectedSystem = selectedElement.options[selectedIndex].value;
             this.set('selectedFromGrade', selectedSystem);            
@@ -35,11 +38,13 @@ export default Ember.Component.extend({
             let model = this.get('model');
             let table = model.table;
 
-            let fromSystems = Ember.$('#fromSystem')[0];
+            var idString = "#fromSystem" + this.get('id');
+            let fromSystems = Ember.$(idString)[0];
             let selectedFromIndex = fromSystems.selectedIndex;
             let selectedFromSystem = fromSystems.options[selectedFromIndex].value;
 
-            let fromGrades = Ember.$("#fromGrade")[0];
+            idString = "#fromGrade" + this.get('id');
+            let fromGrades = Ember.$(idString)[0];
             let selectedFromGradeIndex = fromGrades.selectedIndex;
             var selectedFromGrade = "";
             if (selectedFromGradeIndex === -1) {
@@ -50,7 +55,8 @@ export default Ember.Component.extend({
                 selectedFromGrade = fromGrades.options[selectedFromGradeIndex].value;
             }
 
-            let toSystems = Ember.$("#toSystem")[0];
+            idString = "#toSystem" + this.get('id');
+            let toSystems = Ember.$(idString)[0];
             let selectedToSystemIndex = toSystems.selectedIndex;
             let selectedToSystem = toSystems.options[selectedToSystemIndex].value;
 
