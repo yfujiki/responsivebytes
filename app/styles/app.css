@@ -56,6 +56,20 @@
     text-align: center;
 }
 
+.convert-result-show {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 0px 40px 0px;
+}
+
+.convert-result-hide {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 0px 40px 0px;
+}
+
 /* The Modal (background) */
 .modal-hidden {
     display: none; /* Hidden by default */
