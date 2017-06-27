@@ -41,27 +41,26 @@ export default Ember.Controller.extend({
             let model = this.get('model');
             let table = model.table;
 
+            let fromSystems = Ember.$('#fromSystem')[0];
+            let selectedFromIndex = fromSystems.selectedIndex;
+            let selectedFromSystem = fromSystems.options[selectedFromIndex].value;
+
             let fromGrades = Ember.$("#fromGrade")[0];
-            var selectedFromGradeIndex = fromGrades.selectedIndex;
-            var selectedGradeIndex = 0;
+            let selectedFromGradeIndex = fromGrades.selectedIndex;
+            var selectedFromGrade = "";
             if (selectedFromGradeIndex === -1) {
+                selectedFromGrade = table.systems[selectedFromSystem].grades[0];
                 fromGrades.selectedIndex = 0                
-                selectedFromGradeIndex = 0;
                 this.actions.fromSystemSelected.bind(this)();
-                selectedGradeIndex = 0;
             } else {
-                var selectedFromGrade = fromGrades.options[selectedFromGradeIndex].value;
-                let selectedElement = Ember.$('#fromSystem')[0];
-                let selectedIndex = selectedElement.selectedIndex;
-                let selectedSystem = selectedElement.options[selectedIndex].value;
-                selectedGradeIndex = table.systems[selectedSystem].grades.indexOf(selectedFromGrade);
+                selectedFromGrade = fromGrades.options[selectedFromGradeIndex].value;
             }
 
             let toSystems = Ember.$("#toSystem")[0];
             let selectedToSystemIndex = toSystems.selectedIndex;
             let selectedToSystem = toSystems.options[selectedToSystemIndex].value;
-            let toGrades = table.systems[selectedToSystem].grades;
-            let convertedGrade = toGrades[selectedGradeIndex];
+
+            let convertedGrade = table.gradeFor(selectedFromSystem, selectedFromGrade, selectedToSystem)
             this.set('convertedGrade', convertedGrade);
             let resultMode = (convertedGrade.length > 0) ? "convert-result-show" : "convert-result-hide"
             this.set('convertedResultMode', resultMode);
