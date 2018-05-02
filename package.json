@@ -43,6 +43,7 @@
   },
   "private": true,
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "ember-redirect": "^6.0.0"
   }
 }
